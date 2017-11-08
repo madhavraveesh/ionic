@@ -1,24 +1,62 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      WELCOME:{{useremail}}
+    </ion-title>
+    <ion-buttons end>
+    <!--  <button ion-button icon-only (click)="addData()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button> -->
+      <button ion-button class="submit-btn" (click)="logout()">
+      Logout
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <button ion-button full class="submit-btn" (click)="openPage('CameraPage')"> Camera </button>
+  <button ion-button full class="submit-btn" (click)="openPage('GraphPage')"> Graph </button>
+  <button ion-button full class="submit-btn" (click)="openPage('GooglemapPage')"> Google Map </button>
+  <button ion-button full class="submit-btn" (click)="openPage('UsersPage')"> List of users </button>
+  <h2>Expense List</h2>
+  <ion-buttons end>
+      <button ion-button icon-only (click)="addData()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  <!--<button ion-button block clear (click)="openWebpage(url)">Open Webpage</button> -->
   <ion-list>
-      <ion-item>
-        <ion-label fixed>Username</ion-label>
-        <ion-input type="text" value=""></ion-input>
+     <!-- <ion-item>
+          <ion-label floating>URL</ion-label>
+          <ion-input type="url" [(ngModel)]="url"></ion-input>
+        </ion-item> -->
+    <ion-item-sliding *ngFor="let expense of expenses; let i=index">
+      <ion-item nopadding>
+        <p>
+          <span>{{expense.date}}</span><br>
+          Type: {{expense.type}}<br>
+          {{expense.description}}
+        </p>
+        <h3 item-end>
+          Amount: ${{expense.amount}}
+        </h3>
       </ion-item>
-    
-      <ion-item>
-        <ion-label fixed>Password</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
-    
-    </ion-list>
-    <div padding>
-      <button ion-button color="primary" block>Sign In</button>
-    </div>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="editData(expense.rowid)">
+          <ion-icon name="paper"></ion-icon>
+        </button>
+        <button ion-button color="danger" (click)="deleteData(expense.rowid)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
 </ion-content>
+
+ <ion-footer>
+ <ion-toolbar>
+    <ion-title>Balance: ${{balance}}</ion-title>
+  </ion-toolbar> 
+</ion-footer>  
