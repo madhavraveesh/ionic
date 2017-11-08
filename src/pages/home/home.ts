@@ -72,6 +72,10 @@ export class HomePage {
   
      // Inject scripts, css and more with browser.X
     }
+    public testdemo()
+    {
+      console.log('bhvbbv');
+    }
 
 
   ionViewDidLoad() {
