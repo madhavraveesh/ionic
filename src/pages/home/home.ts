@@ -89,7 +89,7 @@ export class HomePage {
 
     public logout(){
       this.storage.remove('login').then(()=>{
-          this.navCtrl.push(LoginPage
+          this.navCtrl.push(LoginPage);
       });
     }
      
